@@ -1,39 +1,10 @@
 # frp
 
-[![Build Status](https://circleci.com/gh/zeperix/frp.svg?style=shield)](https://circleci.com/gh/zeperix/frp)
 [![GitHub release](https://img.shields.io/github/tag/zeperix/frp.svg?label=release)](https://github.com/zeperix/frp/releases)
 [![Go Report Card](https://goreportcard.com/badge/github.com/zeperix/frp)](https://goreportcard.com/report/github.com/zeperix/frp)
-[![GitHub Releases Stats](https://img.shields.io/github/downloads/zeperix/frp/total.svg?logo=github)](https://somsubhra.github.io/github-release-stats/?username=fatedier&repository=frp)
+[![GitHub Releases Stats](https://img.shields.io/github/downloads/zeperix/frp/total.svg?logo=github)](https://somsubhra.github.io/github-release-stats/?username=zeperix&repository=frp)
 
 [README](README.md) | [中文文档](README_zh.md)
-
-## Sponsors
-
-frp is an open source project with its ongoing development made possible entirely by the support of our awesome sponsors. If you'd like to join them, please consider [sponsoring frp's development](https://github.com/sponsors/fatedier).
-
-<h3 align="center">Gold Sponsors</h3>
-<!--gold sponsors start-->
-<p align="center">
-  <a href="https://jb.gg/frp" target="_blank">
-    <img width="420px" src="https://raw.githubusercontent.com/zeperix/frp/dev/doc/pic/sponsor_jetbrains.jpg">
-  </a>
-</p>
-<p align="center">
-  <a href="https://workos.com/?utm_campaign=github_repo&utm_medium=referral&utm_content=frp&utm_source=github" target="_blank">
-    <img width="420px" src="https://raw.githubusercontent.com/zeperix/frp/dev/doc/pic/sponsor_workos.png">
-  </a>
-</p>
-<p align="center">
-  <a href="https://github.com/daytonaio/daytona" target="_blank">
-    <img width="420px" src="https://raw.githubusercontent.com/zeperix/frp/dev/doc/pic/sponsor_daytona.png">
-  </a>
-</p>
-<p align="center">
-  <a href="https://github.com/beclab/Olares" target="_blank">
-    <img width="420px" src="https://raw.githubusercontent.com/zeperix/frp/dev/doc/pic/sponsor_olares.jpeg">
-  </a>
-</p>
-<!--gold sponsors end-->
 
 ## What is frp?
 
