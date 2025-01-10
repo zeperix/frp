@@ -15,13 +15,13 @@
 package controller
 
 import (
-	"github.com/fatedier/frp/pkg/nathole"
-	plugin "github.com/fatedier/frp/pkg/plugin/server"
-	"github.com/fatedier/frp/pkg/util/tcpmux"
-	"github.com/fatedier/frp/pkg/util/vhost"
-	"github.com/fatedier/frp/server/group"
-	"github.com/fatedier/frp/server/ports"
-	"github.com/fatedier/frp/server/visitor"
+	"github.com/zeperix/frp/pkg/nathole"
+	plugin "github.com/zeperix/frp/pkg/plugin/server"
+	"github.com/zeperix/frp/pkg/util/tcpmux"
+	"github.com/zeperix/frp/pkg/util/vhost"
+	"github.com/zeperix/frp/server/group"
+	"github.com/zeperix/frp/server/ports"
+	"github.com/zeperix/frp/server/visitor"
 )
 
 // All resource managers and controllers

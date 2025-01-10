@@ -1,9 +1,9 @@
 # frp
 
-[![Build Status](https://circleci.com/gh/fatedier/frp.svg?style=shield)](https://circleci.com/gh/fatedier/frp)
-[![GitHub release](https://img.shields.io/github/tag/fatedier/frp.svg?label=release)](https://github.com/fatedier/frp/releases)
-[![Go Report Card](https://goreportcard.com/badge/github.com/fatedier/frp)](https://goreportcard.com/report/github.com/fatedier/frp)
-[![GitHub Releases Stats](https://img.shields.io/github/downloads/fatedier/frp/total.svg?logo=github)](https://somsubhra.github.io/github-release-stats/?username=fatedier&repository=frp)
+[![Build Status](https://circleci.com/gh/zeperix/frp.svg?style=shield)](https://circleci.com/gh/zeperix/frp)
+[![GitHub release](https://img.shields.io/github/tag/zeperix/frp.svg?label=release)](https://github.com/zeperix/frp/releases)
+[![Go Report Card](https://goreportcard.com/badge/github.com/zeperix/frp)](https://goreportcard.com/report/github.com/zeperix/frp)
+[![GitHub Releases Stats](https://img.shields.io/github/downloads/zeperix/frp/total.svg?logo=github)](https://somsubhra.github.io/github-release-stats/?username=fatedier&repository=frp)
 
 [README](README.md) | [中文文档](README_zh.md)
 
@@ -17,22 +17,22 @@ frp 是一个完全开源的项目，我们的开发工作完全依靠赞助者�
 <!--gold sponsors start-->
 <p align="center">
   <a href="https://jb.gg/frp" target="_blank">
-    <img width="420px" src="https://raw.githubusercontent.com/fatedier/frp/dev/doc/pic/sponsor_jetbrains.jpg">
+    <img width="420px" src="https://raw.githubusercontent.com/zeperix/frp/dev/doc/pic/sponsor_jetbrains.jpg">
   </a>
 </p>
 <p align="center">
   <a href="https://workos.com/?utm_campaign=github_repo&utm_medium=referral&utm_content=frp&utm_source=github" target="_blank">
-    <img width="420px" src="https://raw.githubusercontent.com/fatedier/frp/dev/doc/pic/sponsor_workos.png">
+    <img width="420px" src="https://raw.githubusercontent.com/zeperix/frp/dev/doc/pic/sponsor_workos.png">
   </a>
 </p>
 <p align="center">
   <a href="https://github.com/daytonaio/daytona" target="_blank">
-    <img width="420px" src="https://raw.githubusercontent.com/fatedier/frp/dev/doc/pic/sponsor_daytona.png">
+    <img width="420px" src="https://raw.githubusercontent.com/zeperix/frp/dev/doc/pic/sponsor_daytona.png">
   </a>
 </p>
 <p align="center">
   <a href="https://github.com/beclab/Olares" target="_blank">
-    <img width="420px" src="https://raw.githubusercontent.com/fatedier/frp/dev/doc/pic/sponsor_olares.jpeg">
+    <img width="420px" src="https://raw.githubusercontent.com/zeperix/frp/dev/doc/pic/sponsor_olares.jpeg">
   </a>
 </p>
 <!--gold sponsors end-->
@@ -80,14 +80,14 @@ v2 的构想是基于我多年在云原生领域，特别是在 K8s 和 ServiceM
 
 frp 是一个免费且开源的项目，我们欢迎任何人为其开发和进步贡献力量。
 
-* 在使用过程中出现任何问题，可以通过 [issues](https://github.com/fatedier/frp/issues) 来反馈。
+* 在使用过程中出现任何问题，可以通过 [issues](https://github.com/zeperix/frp/issues) 来反馈。
 * Bug 的修复可以直接提交 Pull Request 到 dev 分支。
 * 如果是增加新的功能特性，请先创建一个 issue 并做简单描述以及大致的实现方法，提议被采纳后，就可以创建一个实现新特性的 Pull Request。
 * 欢迎对说明文档做出改善，帮助更多的人使用 frp，特别是英文文档。
 * 贡献代码请提交 PR 至 dev 分支，master 分支仅用于发布稳定可用版本。
 * 如果你有任何其他方面的问题或合作，欢迎发送邮件至 fatedier@gmail.com 。
 
-**提醒：和项目相关的问题请在 [issues](https://github.com/fatedier/frp/issues) 中反馈，这样方便其他有类似问题的人可以快速查找解决方法，并且也避免了我们重复回答一些问题。**
+**提醒：和项目相关的问题请在 [issues](https://github.com/zeperix/frp/issues) 中反馈，这样方便其他有类似问题的人可以快速查找解决方法，并且也避免了我们重复回答一些问题。**
 
 ## 关联项目
 

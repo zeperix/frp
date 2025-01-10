@@ -23,7 +23,7 @@ import (
 
 	"github.com/samber/lo"
 
-	"github.com/fatedier/frp/pkg/util/util"
+	"github.com/zeperix/frp/pkg/util/util"
 )
 
 type VisitorTransport struct {
