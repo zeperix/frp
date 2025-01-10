@@ -1275,17 +1275,3 @@ Interested in getting involved? We would like to help you!
 * If you have great ideas, send an email to fatedier@gmail.com.
 
 **Note: We prefer you to give your advise in [issues](https://github.com/zeperix/frp/issues), so others with a same question can search it quickly and we don't need to answer them repeatedly.**
-
-## Donation
-
-If frp helps you a lot, you can support us by:
-
-### GitHub Sponsors
-
-Support us by [Github Sponsors](https://github.com/sponsors/fatedier).
-
-You can have your company's logo placed on README file of this project.
-
-### PayPal
-
-Donate money by [PayPal](https://www.paypal.me/fatedier) to my account **fatedier@gmail.com**.
