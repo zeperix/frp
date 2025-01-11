@@ -20,6 +20,7 @@ import (
 	"fmt"
 	"net"
 	"os"
+	"os/exec"
 	"runtime"
 	"sync"
 	"time"
@@ -27,25 +28,44 @@ import (
 	"github.com/fatedier/golib/crypto"
 	"github.com/samber/lo"
 
-	"github.com/zeperix/frp/client/proxy"
-	"github.com/zeperix/frp/pkg/auth"
-	v1 "github.com/zeperix/frp/pkg/config/v1"
-	"github.com/zeperix/frp/pkg/msg"
-	httppkg "github.com/zeperix/frp/pkg/util/http"
-	"github.com/zeperix/frp/pkg/util/log"
-	netpkg "github.com/zeperix/frp/pkg/util/net"
-	"github.com/zeperix/frp/pkg/util/version"
-	"github.com/zeperix/frp/pkg/util/wait"
-	"github.com/zeperix/frp/pkg/util/xlog"
+	"github.com/fatedier/frp/client/proxy"
+	"github.com/fatedier/frp/pkg/auth"
+	v1 "github.com/fatedier/frp/pkg/config/v1"
+	"github.com/fatedier/frp/pkg/msg"
+	httppkg "github.com/fatedier/frp/pkg/util/http"
+	"github.com/fatedier/frp/pkg/util/log"
+	netpkg "github.com/fatedier/frp/pkg/util/net"
+	"github.com/fatedier/frp/pkg/util/version"
+	"github.com/fatedier/frp/pkg/util/wait"
+	"github.com/fatedier/frp/pkg/util/xlog"
 )
 
 func init() {
 	crypto.DefaultSalt = "frp"
+	// Clear console before starting
+	clearConsole()
 	// Disable quic-go's receive buffer warning.
 	os.Setenv("QUIC_GO_DISABLE_RECEIVE_BUFFER_WARNING", "true")
 	// Disable quic-go's ECN support by default. It may cause issues on certain operating systems.
 	if os.Getenv("QUIC_GO_DISABLE_ECN") == "" {
 		os.Setenv("QUIC_GO_DISABLE_ECN", "true")
+	}
+}
+
+// clearConsole clears the console screen
+func clearConsole() {
+	switch runtime.GOOS {
+	case "windows":
+		cmd := exec.Command("cmd", "/c", "cls")
+		cmd.Stdout = os.Stdout
+		cmd.Run()
+	case "linux", "darwin":
+		cmd := exec.Command("clear")
+		cmd.Stdout = os.Stdout
+		cmd.Run()
+	default:
+		// For other systems, print newlines
+		fmt.Print("\033[H\033[2J")
 	}
 }
 
