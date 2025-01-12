@@ -74,5 +74,5 @@ jobs:
         with:
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: ./release-${{ matrix.goos }}-${{ matrix.goarch }}.zip
-          asset_name: frp-${{ matrix.goos }}-${{ matrix.goarch }}.zip
+          asset_name: release-${{ matrix.goos }}-${{ matrix.goarch }}.zip
           asset_content_type: application/zip
