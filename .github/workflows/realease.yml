@@ -20,9 +20,6 @@ on:
   release:
     types: [published]
 
-permissions:
-  contents: write
-
 jobs:
   build:
     strategy:
@@ -102,6 +99,14 @@ jobs:
           command: |
             cp ${GITHUB_WORKSPACE}/conf/frpc.toml ./build_assets/frpc.toml
             cp ${GITHUB_WORKSPACE}/conf/frps.toml ./build_assets/frps.toml
+
+      - name: Extract GUI and copy to build directory
+        if: matrix.goos == 'windows'
+        run: |
+          unzip ${GITHUB_WORKSPACE}/gui/gui.zip -d temp_gui
+          cp temp_gui/FRP_GUI.exe ./build_assets/
+          rm -rf temp_gui
+
       - name: Create ZIP archive
         shell: bash
         run: |
