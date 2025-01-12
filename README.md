@@ -1,39 +1,11 @@
 # frp
 
-[![Build Status](https://circleci.com/gh/zeperix/frp.svg?style=shield)](https://circleci.com/gh/zeperix/frp)
 [![GitHub release](https://img.shields.io/github/tag/zeperix/frp.svg?label=release)](https://github.com/zeperix/frp/releases)
 [![Go Report Card](https://goreportcard.com/badge/github.com/zeperix/frp)](https://goreportcard.com/report/github.com/zeperix/frp)
 [![GitHub Releases Stats](https://img.shields.io/github/downloads/zeperix/frp/total.svg?logo=github)](https://somsubhra.github.io/github-release-stats/?username=fatedier&repository=frp)
 
 [README](README.md) | [中文文档](README_zh.md)
 
-## Sponsors
-
-frp is an open source project with its ongoing development made possible entirely by the support of our awesome sponsors. If you'd like to join them, please consider [sponsoring frp's development](https://github.com/sponsors/fatedier).
-
-<h3 align="center">Gold Sponsors</h3>
-<!--gold sponsors start-->
-<p align="center">
-  <a href="https://jb.gg/frp" target="_blank">
-    <img width="420px" src="https://raw.githubusercontent.com/zeperix/frp/dev/doc/pic/sponsor_jetbrains.jpg">
-  </a>
-</p>
-<p align="center">
-  <a href="https://workos.com/?utm_campaign=github_repo&utm_medium=referral&utm_content=frp&utm_source=github" target="_blank">
-    <img width="420px" src="https://raw.githubusercontent.com/zeperix/frp/dev/doc/pic/sponsor_workos.png">
-  </a>
-</p>
-<p align="center">
-  <a href="https://github.com/daytonaio/daytona" target="_blank">
-    <img width="420px" src="https://raw.githubusercontent.com/zeperix/frp/dev/doc/pic/sponsor_daytona.png">
-  </a>
-</p>
-<p align="center">
-  <a href="https://github.com/beclab/Olares" target="_blank">
-    <img width="420px" src="https://raw.githubusercontent.com/zeperix/frp/dev/doc/pic/sponsor_olares.jpeg">
-  </a>
-</p>
-<!--gold sponsors end-->
 
 ## What is frp?
 
@@ -98,10 +70,6 @@ frp also offers a P2P connect mode.
     * [Server Manage Plugins](#server-manage-plugins)
     * [SSH Tunnel Gateway](#ssh-tunnel-gateway)
 * [Releated Projects](#releated-projects)
-* [Contributing](#contributing)
-* [Donation](#donation)
-    * [GitHub Sponsors](#github-sponsors)
-    * [PayPal](#paypal)
 
 <!-- vim-markdown-toc -->
 
@@ -1264,28 +1232,3 @@ Please refer to this [document](/doc/ssh_tunnel_gateway.md) for more information
 
 * [gofrp/plugin](https://github.com/gofrp/plugin) - A repository for frp plugins that contains a variety of plugins implemented based on the frp extension mechanism, meeting the customization needs of different scenarios.
 * [gofrp/tiny-frpc](https://github.com/gofrp/tiny-frpc) - A lightweight version of the frp client (around 3.5MB at minimum) implemented using the ssh protocol, supporting some of the most commonly used features, suitable for devices with limited resources.
-
-## Contributing
-
-Interested in getting involved? We would like to help you!
-
-* Take a look at our [issues list](https://github.com/zeperix/frp/issues) and consider sending a Pull Request to **dev branch**.
-* If you want to add a new feature, please create an issue first to describe the new feature, as well as the implementation approach. Once a proposal is accepted, create an implementation of the new features and submit it as a pull request.
-* Sorry for my poor English. Improvements for this document are welcome, even some typo fixes.
-* If you have great ideas, send an email to fatedier@gmail.com.
-
-**Note: We prefer you to give your advise in [issues](https://github.com/zeperix/frp/issues), so others with a same question can search it quickly and we don't need to answer them repeatedly.**
-
-## Donation
-
-If frp helps you a lot, you can support us by:
-
-### GitHub Sponsors
-
-Support us by [Github Sponsors](https://github.com/sponsors/fatedier).
-
-You can have your company's logo placed on README file of this project.
-
-### PayPal
-
-Donate money by [PayPal](https://www.paypal.me/fatedier) to my account **fatedier@gmail.com**.
