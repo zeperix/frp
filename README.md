@@ -4,8 +4,6 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/zeperix/frp)](https://goreportcard.com/report/github.com/zeperix/frp)
 [![GitHub Releases Stats](https://img.shields.io/github/downloads/zeperix/frp/total.svg?logo=github)](https://somsubhra.github.io/github-release-stats/?username=fatedier&repository=frp)
 
-[README](README.md) | [中文文档](README_zh.md)
-
 
 ## What is frp?
 
