@@ -16,7 +16,9 @@ package xlog
 
 import (
 	"cmp"
+	"fmt"
 	"slices"
+	"strings"
 
 	"github.com/zeperix/frp/pkg/util/log"
 )
@@ -82,8 +84,16 @@ func (l *Logger) renderPrefixString() {
 		return cmp.Compare(a.Priority, b.Priority)
 	})
 	l.prefixString = ""
+	
+	// Chỉ lấy các prefix quan trọng
 	for _, v := range l.prefixes {
-		l.prefixString += "[" + v.Value + "] "
+		// Bỏ qua các prefix không cần thiết
+		if !strings.Contains(v.Value, ".go") && 
+		   !strings.Contains(v.Value, "client/") &&
+		   !strings.Contains(v.Value, "sub/") &&
+		   !strings.Contains(v.Value, "proxy/") {
+			l.prefixString += "[" + v.Value + "] "
+		}
 	}
 }
 
@@ -95,21 +105,26 @@ func (l *Logger) Spawn() *Logger {
 }
 
 func (l *Logger) Errorf(format string, v ...interface{}) {
-	log.Logger.Errorf(l.prefixString+format, v...)
+	msg := fmt.Sprintf(format, v...)
+	log.Logger.Error(l.prefixString+"%s", msg)
 }
 
 func (l *Logger) Warnf(format string, v ...interface{}) {
-	log.Logger.Warnf(l.prefixString+format, v...)
+	msg := fmt.Sprintf(format, v...)
+	log.Logger.Warn(l.prefixString+"%s", msg)
 }
 
 func (l *Logger) Infof(format string, v ...interface{}) {
-	log.Logger.Infof(l.prefixString+format, v...)
+	msg := fmt.Sprintf(format, v...)
+	log.Logger.Info(l.prefixString+"%s", msg)
 }
 
 func (l *Logger) Debugf(format string, v ...interface{}) {
-	log.Logger.Debugf(l.prefixString+format, v...)
+	msg := fmt.Sprintf(format, v...)
+	log.Logger.Debug(l.prefixString+"%s", msg)
 }
 
 func (l *Logger) Tracef(format string, v ...interface{}) {
-	log.Logger.Tracef(l.prefixString+format, v...)
+	msg := fmt.Sprintf(format, v...)
+	log.Logger.Trace(l.prefixString+"%s", msg)
 }

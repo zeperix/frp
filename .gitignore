@@ -39,5 +39,3 @@ client.key
 
 # Cache
 *.swp
-*.exe
-*.spec

@@ -3,7 +3,7 @@
     <header class="grid-content header-color">
       <div class="header-content">
         <div class="brand">
-          <a href="#">frp client</a>
+          <a href="#">FRP Client Manager</a>
         </div>
         <div class="dark-switch">
           <el-switch
