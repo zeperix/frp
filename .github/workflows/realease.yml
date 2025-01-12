@@ -1,78 +1,125 @@
 name: Build and Release
 
 on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    paths:
+      - "**/*.go"
+      - "go.mod"
+      - "go.sum"
+      - ".github/workflows/*.yml"
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - "**/*.go"
+      - "go.mod"
+      - "go.sum"
+      - ".github/workflows/*.yml"
   release:
-    types:
-      - published
+    types: [published]
 
 jobs:
   build:
-    name: Build and Upload Release
-    runs-on: ubuntu-latest
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
-        include:
-          - os: ubuntu-latest
-            goos: linux
-            goarch: amd64
-          - os: macos-latest
+        # Include amd64 on all platforms.
+        goos: [windows, linux, darwin]
+        goarch: [amd64, 386]
+        exclude:
+          # Exclude i386 on darwin.
+          - goarch: 386
             goos: darwin
-            goarch: amd64
-          - os: windows-latest
-            goos: windows
-            goarch: amd64
-          - os: ubuntu-latest
-            goos: linux
+        include:
+          # BEIGIN MacOS ARM64
+          - goos: darwin
             goarch: arm64
-            extra: termux
+          # END MacOS ARM64
+          # BEGIN Android ARM 8
+          - goos: android
+            goarch: arm64
+          # END Android ARM 8
+          # BEGIN ARM64
+          - goos: linux
+            goarch: arm64
+          # END ARM64
+      fail-fast: false
+
+    runs-on: ubuntu-latest
+    env:
+      GOOS: ${{ matrix.goos }}
+      GOARCH: ${{ matrix.goarch }}
+      GOARM: ${{ matrix.goarm }}
+      CGO_ENABLED: 0
     steps:
-      # 1. Checkout repository
-      - name: Checkout Code
+      - name: Checkout codebase
         uses: actions/checkout@v3
+      - name: Show workflow information
+        id: get_filename
+        run: |
+          export _NAME=$(jq ".[\"$GOOS-$GOARCH$GOARM$GOMIPS\"].friendlyName" -r < .github/build/name.json)
+          echo "GOOS: $GOOS, GOARCH: $GOARCH, GOARM: $GOARM, GOMIPS: $GOMIPS, RELEASE_NAME: $_NAME"
+          echo "ASSET_NAME=$_NAME" >> $GITHUB_OUTPUT
+          echo "ASSET_NAME=$_NAME" >> $GITHUB_ENV
 
-      # 2. Setup Go environment
-      - name: Setup Go
-        uses: actions/setup-go@v4
+      - name: Set up Go
+        uses: actions/setup-go@v3
         with:
-          go-version: 1.20
+          go-version: "^1.21"
 
-      # 3. Install make
-      - name: Install Make
-        run: sudo apt-get install -y make
+      - name: Get project dependencies
+        run: go mod download
 
-      # 4. Set environment variables
-      - name: Set Environment Variables
+      - name: Build FRP
         run: |
-          echo "GOOS=${{ matrix.goos }}" >> $GITHUB_ENV
-          echo "GOARCH=${{ matrix.goarch }}" >> $GITHUB_ENV
-        if: ${{ matrix.extra == 'termux' }}
-      
-      # 5. Run make build
-      - name: Run Make Build
-        run: |
-          mkdir -p ./bin
-          make build
-        env:
-          GOOS: ${{ matrix.goos }}
-          GOARCH: ${{ matrix.goarch }}
+          mkdir -p build_assets
+          go build -trimpath -ldflags "-s -w" -tags frps -o build_assets/frpc ./cmd/frpc
+          go build -trimpath -ldflags "-s -w" -tags frps -o build_assets/frps ./cmd/frps
 
-      # 6. Copy configuration files
-      - name: Copy Configuration Files
+      - name: Build Mips softfloat FRP
+        if: matrix.goarch == 'mips' || matrix.goarch == 'mipsle'
         run: |
-          cp ./conf/frpc.toml ./bin/
-          cp ./conf/frps.toml ./bin/
+          GOMIPS=softfloat go build -trimpath -ldflags "-s -w" -tags frps -o build_assets/frpc_softfloat ./cmd/frpc
+          GOMIPS=softfloat go build -trimpath -ldflags "-s -w" -tags frps -o build_assets/frps_softfloat ./cmd/frps
 
-      # 7. Zip the output
-      - name: Create ZIP Archive
+      - name: Rename Windows FRP
+        if: matrix.goos == 'windows'
         run: |
-          zip -r release-${{ matrix.goos }}-${{ matrix.goarch }}.zip ./bin
+          cd ./build_assets || exit 1
+          mv frpc frpc.exe
+          mv frps frps.exe
 
-      # 8. Upload artifacts to release
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
+      - name: Prepare to release
+        uses: nick-fields/retry@v2
         with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./release-${{ matrix.goos }}-${{ matrix.goarch }}.zip
-          asset_name: release-${{ matrix.goos }}-${{ matrix.goarch }}.zip
-          asset_content_type: application/zip
+          timeout_minutes: 60
+          retry_wait_seconds: 60
+          max_attempts: 5
+          command: |
+            cp ${GITHUB_WORKSPACE}/conf/frpc.toml ./build_assets/frpc.toml
+            cp ${GITHUB_WORKSPACE}/conf/frps.toml ./build_assets/frps.toml
+      - name: Create ZIP archive
+        shell: bash
+        run: |
+          pushd build_assets || exit 1
+          touch -mt $(date +%Y01010000) *
+          zip -9vr ../FRP-$ASSET_NAME.zip .
+          popd || exit 1
+
+      - name: Change the name
+        run: |
+          mv build_assets FRP-$ASSET_NAME
+      - name: Upload files to Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: FRP-${{ steps.get_filename.outputs.ASSET_NAME }}
+          path: |
+            ./FRP-${{ steps.get_filename.outputs.ASSET_NAME }}/*
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        if: github.event_name == 'release'
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ./FRP-${{ steps.get_filename.outputs.ASSET_NAME }}.zip
+          tag: ${{ github.ref }}
