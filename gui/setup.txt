@@ -1,0 +1,2 @@
+pip install PyQt6 toml pyperclip pyinstaller
+pyinstaller --clean app.spec
